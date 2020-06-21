@@ -1,0 +1,32 @@
+package com.candidate.android.dev.wongnai_assignment.Data.model.CoinModel
+
+data class CoinX(
+    var allTimeHigh: AllTimeHigh? = null,
+    var approvedSupply: Boolean? = null,
+    var change: Double? = null,
+    var circulatingSupply: Double? = null,
+    var color: String? = null,
+    var confirmedSupply: Boolean? = null,
+    var description: String? = null,
+    var firstSeen: Long? = null,
+    var history: List<String>? = null,
+    var iconType: String? = null,
+    var iconUrl: String? = null,
+    var id: Int? = null,
+    var links: List<Link>? = null,
+    var marketCap: String? = null,
+    var name: String? = null,
+    var numberOfExchanges: Int? = null,
+    var numberOfMarkets: Int? = null,
+    var penalty: Boolean? = null,
+    var price: String? = null,
+    var rank: Int? = null,
+    var slug: String? = null,
+    var socials: List<Social>? = null,
+    var symbol: String? = null,
+    var totalSupply: String? = null,
+    var type: String? = null,
+    var uuid: String? = null,
+    var volume: String? = null,
+    var websiteUrl: String? = null
+)
