@@ -11,6 +11,7 @@ import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 val assignmentModule = module {
-    factory{ CoinServiceImpl()}
+    single{ CoinServiceImpl()}
+    factory { MainScreen() }
     viewModel {MainScreenViewModel(get())}
 }

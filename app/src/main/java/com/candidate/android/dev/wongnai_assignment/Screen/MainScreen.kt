@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.candidate.android.dev.wongnai_assignment.Adapter.CoinAdapter
 import com.candidate.android.dev.wongnai_assignment.BaseAdapter.BaseScreen
+import com.candidate.android.dev.wongnai_assignment.Data.repository.coin.CoinServiceImpl
 import com.candidate.android.dev.wongnai_assignment.Extension.hideSoftKeyboard
 import com.candidate.android.dev.wongnai_assignment.Extension.simpleName
 import com.candidate.android.dev.wongnai_assignment.databinding.FragmentMainBinding

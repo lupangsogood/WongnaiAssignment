@@ -17,6 +17,9 @@ import java.nio.charset.Charset
 import javax.net.ssl.HttpsURLConnection
 
 open class RemoteDataSource {
+
+
+
     suspend fun <T> call(job: T): BaseResult<T> = withContext(Dispatchers.IO) {
         return@withContext try {
             BaseResult.success(job)

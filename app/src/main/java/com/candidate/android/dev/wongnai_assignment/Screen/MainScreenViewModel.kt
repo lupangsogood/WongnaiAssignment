@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.candidate.android.dev.wongnai_assignment.BaseAdapter.BaseViewModel
-import com.candidate.android.dev.wongnai_assignment.Data.BaseResult
-import com.candidate.android.dev.wongnai_assignment.Data.model.CoinModel.Coin
 import com.candidate.android.dev.wongnai_assignment.Data.model.CoinModel.CoinX
 import com.candidate.android.dev.wongnai_assignment.Data.repository.coin.CoinServiceImpl
 import com.candidate.android.dev.wongnai_assignment.Extension.simpleName
@@ -34,18 +32,16 @@ class MainScreenViewModel(private val coinService: CoinServiceImpl) : BaseViewMo
     suspend fun getCoinData() {
         setClearSearch()
         setPrefix(null)
-        viewModelScope.launch {
             val result = coinService.fetchCoin()
             when (result.isSuccessful()) {
                 true -> {
                     clearIndex()
-                    _coinData.value = result.data?.data?.coins
+                    _coinData.postValue(result.data?.data?.coins)
                 }
                 false -> {
                     Timber.d(result.message)
                 }
             }
-        }
     }
 
     suspend fun searchCoinData(prefix: String) {

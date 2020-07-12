@@ -54,7 +54,6 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     kapt 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
     testImplementation "android.arch.core:core-testing:1.1.1"
-
     //CoroutinesTest
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
 
@@ -68,7 +67,7 @@ dependencies {
     //Material Design
     implementation 'com.google.android.material:material:1.1.0'
 
-    //SwipeRefresLayout
+    //SwipeRefreshLayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     //Koin(Service Locator) for Dependency Injection

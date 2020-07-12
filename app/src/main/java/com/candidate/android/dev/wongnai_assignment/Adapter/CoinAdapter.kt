@@ -16,7 +16,7 @@ enum class CoinViewType(val type: Int) {
     MOD(1)
 }
 
-class CoinAdapter : RecyclerView.Adapter<ViewHolder>() {
+class CoinAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var viewType: Int? = null
     private var coinData = ArrayList<CoinX>()
@@ -26,7 +26,7 @@ class CoinAdapter : RecyclerView.Adapter<ViewHolder>() {
         return viewType ?: 0
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             CoinViewType.MOD.type -> {
                 ViewHolder(
@@ -35,7 +35,7 @@ class CoinAdapter : RecyclerView.Adapter<ViewHolder>() {
                 )
             }
             else -> {
-                ViewHolder(
+                ViewHolder2(
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.adapter_coin, parent, false)
                 )
@@ -47,13 +47,19 @@ class CoinAdapter : RecyclerView.Adapter<ViewHolder>() {
         return coinData.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         coinData[position].let {
             when (viewType) {
-                CoinViewType.NORMAL.type -> holder.bindData(it)
-                CoinViewType.MOD.type -> holder.bindModFiveData(it)
+                CoinViewType.NORMAL.type -> {
+                    val h = holder as? ViewHolder
+                    h?.bindData(it)
+                }
+                CoinViewType.MOD.type ->{
+                    val h = holder as? ViewHolder2
+                    h?.bindModFiveData(it)
+                }
+                else -> {}
             }
-
         }
     }
 
@@ -75,6 +81,8 @@ class CoinAdapter : RecyclerView.Adapter<ViewHolder>() {
             }
         }
     }
+
+
 }
 
 class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -93,3 +101,22 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 }
+
+class ViewHolder2(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun bindData(data: CoinX) {
+        itemView.let { v ->
+            data.iconUrl?.let { url -> v.logoCoin.loadFromURLSVG(url) }
+            data.name?.let { name -> v.coinTitle.text = name }
+            data.description?.let { desc -> v.coinDetail.text = Html.fromHtml(desc) }
+        }
+    }
+
+    fun bindModFiveData(data: CoinX) {
+        itemView.let { v ->
+            data.iconUrl?.let { url -> v.logoCoin.loadFromURLSVG(url) }
+            data.name?.let { name -> v.coinTitle.text = name }
+        }
+    }
+}
+
+
